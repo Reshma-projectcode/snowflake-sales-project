@@ -28,8 +28,35 @@ Objective:
 - Perform analysis to generate insights such as total sales, sales by region, and sales trends over time.
 /Sql: Contains SQL scripts.
 
-create_tables.sql: SQL script for creating tables. (salestable, regionstable and productstable)
+1. create_tables.sql: SQL script for creating tables. (salestable, regionstable and productstable)
+      **salestable :** use SALESPERFORMANCEDB;
+create table salestable(SALE_ID INT PRIMARY KEY,
+    PRODUCT_ID INT,
+    REGION_ID INT,
+    SALE_DATE DATE,
+    QUANTITY INT,
+    TOTAL_AMOUNT DECIMAL(10, 2) ,
+    FOREIGN KEY (PRODUCT_ID) REFERENCES (PRODUCT_ID),
+    FOREIGN KEY (REGION_ID) REFERENCES (REGION_ID) 
+    );SALESPERFORMANCEDB.PUBLIC.PRODUCTSTABLE
 
+   **Regionstable:** USE SALESPERFORMANCEDB;
+CREATE TABLE REGIONSTABLE (
+    REGION_ID INT PRIMARY KEY,
+    REGION_NAME STRING
+);
+
+
+**Productstable:** use salesperformancedb;
+CREATE TABLE PRODUCTSTABLE (
+    PRODUCT_ID INT PRIMARY KEY,
+    PRODUCT_NAME STRING,
+    CATEGORY STRING,
+    PRICE DECIMAL(10, 2)
+);
+
+
+      
 load_data.sql: SQL script for loading data into Snowflake. (loaded data for each table seperately)
 
 analysis_queries.sql: SQL script for running analysis queries.
@@ -62,6 +89,7 @@ Set Up Snowflake Environment
 
 Log in to the Snowflake web interface: Snowflake UI.
 Create a new Snowflake database to use for this project.
+
 Run SQL Scripts
 
 Create Tables: Run "sql/create_tables.sql" to set up the schema in your Snowflake database.
